@@ -3,14 +3,30 @@ import java.util.function.Function;
 
 public class App {
     public static void main(String[] args) {
-        Consumer consumer = str -> System.out.println(str + "*");
-        consumer.accept("Hello");
-        MyConsumer myConsumer = str ->  System.out.println(str + "*");
-        myConsumer.add("World");
+        consumerAddStar(str -> System.out.println(str + "*"));
 
-        Function<Integer, Integer> square = num -> num * num;
-        System.out.println(square.apply(5));
-        MyFunction myFunction = num -> num * num;
-        System.out.println(myFunction.suqare(5));
+        myConsumerAddStar(str -> System.out.println(str + "*"));
+
+        System.out.println(functionSquare(num -> num * num, 5));
+
+        System.out.println(myFunctionSquare(num -> num * num, 5));
+    }
+
+    public static void consumerAddStar(Consumer consumer) {
+        String str = "指定字符串";
+        consumer.accept(str);
+    }
+
+    public static void myConsumerAddStar(MyConsumer myConsumer) {
+        String str = "指定字符串";
+        myConsumer.add(str);
+    }
+
+    public static int functionSquare(Function<Integer, Integer> square, int number) {
+        return square.apply(number);
+    }
+
+    public static int myFunctionSquare(MyFunction squ, int number) {
+        return squ.suqare(number);
     }
 }
